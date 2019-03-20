@@ -1,0 +1,1 @@
+./toy-engine --html example/test.html --css example/test.css | display
