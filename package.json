@@ -1,0 +1,23 @@
+{
+  "name": "toy-engine",
+  "version": "0.1.0",
+  "description": "toy engine",
+  "main": "index.js",
+  "private": true,
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanemat/js-toy-engine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanemat/js-toy-engine/issues"
+  },
+  "homepage": "https://github.com/sanemat/js-toy-engine#readme"
+}
