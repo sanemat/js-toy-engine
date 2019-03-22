@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sanemat/js-toy-engine/issues"
   },
-  "homepage": "https://github.com/sanemat/js-toy-engine#readme"
+  "homepage": "https://github.com/sanemat/js-toy-engine#readme",
+  "dependencies": {
+    "pngjs": "^3.4.0"
+  }
 }
