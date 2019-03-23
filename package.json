@@ -8,7 +8,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "homepage": "https://github.com/sanemat/js-toy-engine#readme",
   "dependencies": {
     "pngjs": "^3.4.0"
+  },
+  "devDependencies": {
+    "jest": "^24.5.0"
   }
 }
