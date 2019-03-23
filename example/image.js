@@ -1,6 +1,6 @@
-// node --experimental-modules example/image.mjs |display
+// node example/image.js | display
 
-import pngjs from 'pngjs';
+const pngjs = require('pngjs');
 const width = 100;
 const height = 100;
 const buffer = new Buffer.alloc(2 * width * height * 4);
