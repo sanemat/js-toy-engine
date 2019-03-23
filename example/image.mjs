@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-const __dirname = path.join(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
+// node --experimental-modules example/image.mjs |display
+
 import pngjs from 'pngjs';
-const width = 10;
-const height = 10;
+const width = 100;
+const height = 100;
 const buffer = new Buffer.alloc(2 * width * height * 4);
 const bitmap = new Uint16Array(buffer.buffer);
 for (let i = 0; i < height; i++) {
@@ -14,11 +13,7 @@ for (let i = 0; i < height; i++) {
     bitmap[i * 4 * width + 4*j + 3] = 65535;
   }
 }
-const newfile = new pngjs.PNG({ width: width, height: height });
-newfile.data = buffer;
+const png = new pngjs.PNG({ width: width, height: height });
+png.data = buffer;
 
-newfile.pack()
-  .pipe(fs.createWriteStream(__dirname + '/newfile.png'))
-  .on('finish', function() {
-    console.log('Written!');
-  });
+png.pack().pipe(process.stdout);
