@@ -4,19 +4,18 @@ const __dirname = path.join(path.dirname(decodeURI(new URL(import.meta.url).path
 import pngjs from 'pngjs';
 const width = 10;
 const height = 10;
-const newfile = new pngjs.PNG({ width: width, height: height });
-for (let y = 0; y < height; y++) {
-  for (let x = 0; x < width; x++) {
-    const idx = (width * y + x) << 2;
-
-    const col = x < (width >> 1) ^ y < (height >> 1) ? 0xe5 : 0xff;
-
-    newfile.data[idx] = col;
-    newfile.data[idx + 1] = col;
-    newfile.data[idx + 2] = col;
-    newfile.data[idx + 3] = 0xff;
+const buffer = new Buffer.alloc(2 * width * height * 4);
+const bitmap = new Uint16Array(buffer.buffer);
+for (let i = 0; i < height; i++) {
+  for (let j = 0; j < width; j++) {
+    bitmap[i * 4 * width + 4*j] = i * 65535 / height;
+    bitmap[i * 4 * width + 4*j + 1] = j * 65535 / width;
+    bitmap[i * 4 * width + 4*j + 2] = (height-i) * 65535 / height;
+    bitmap[i * 4 * width + 4*j + 3] = 65535;
   }
 }
+const newfile = new pngjs.PNG({ width: width, height: height });
+newfile.data = buffer;
 
 newfile.pack()
   .pipe(fs.createWriteStream(__dirname + '/newfile.png'))
