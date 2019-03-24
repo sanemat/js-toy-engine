@@ -1,6 +1,16 @@
-const { DisplayCommand, getColor } = require("../lib/painting");
+const {
+  DisplayCommand,
+  getColor,
+  renderBackground
+} = require("../lib/painting");
 const { Color, Value } = require("../lib/css");
-const { Rect, LayoutBox, BoxType } = require("../lib/layout");
+const {
+  Rect,
+  LayoutBox,
+  BoxType,
+  EdgeSizes,
+  Dimensions
+} = require("../lib/layout");
 const { Node, NodeType } = require("../lib/dom");
 const { StyledNode } = require("../lib/style");
 
@@ -62,4 +72,55 @@ test("get no color2", () => {
       "example"
     )
   ).toEqual(null);
+});
+
+test("render background with color", () => {
+  const displayList = [];
+  renderBackground(
+    displayList,
+    new LayoutBox(
+      new Dimensions(
+        new Rect(20, 30, 5, 5),
+        new EdgeSizes(2, 3, 4, 5),
+        new EdgeSizes(2, 3, 4, 5),
+        new EdgeSizes(2, 3, 4, 5)
+      ),
+      new BoxType.BlockNode([
+        new StyledNode(
+          new Node([], new NodeType.Text(["text"])),
+          new Map([
+            ["background", new Value.ColorValue([new Color(0, 0, 0, 0)])]
+          ]),
+          []
+        )
+      ]),
+      []
+    )
+  );
+  expect(displayList[0]).toEqual(
+    new DisplayCommand.SolidColor([
+      new Color(0, 0, 0, 0),
+      new Rect(16, 22, 15, 23)
+    ])
+  );
+});
+
+test("render background no color", () => {
+  const displayList = [];
+  renderBackground(
+    displayList,
+    new LayoutBox(
+      new Dimensions(
+        new Rect(20, 30, 5, 5),
+        new EdgeSizes(2, 3, 4, 5),
+        new EdgeSizes(2, 3, 4, 5),
+        new EdgeSizes(2, 3, 4, 5)
+      ),
+      new BoxType.BlockNode([
+        new StyledNode(new Node([], new NodeType.Text(["text"])), new Map(), [])
+      ]),
+      []
+    )
+  );
+  expect(displayList.length).toBe(0);
 });
