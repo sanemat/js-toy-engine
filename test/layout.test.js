@@ -5,7 +5,7 @@ test("rect", () => {
 });
 
 test("layout box", () => {
-  expect(LayoutBox.create(new BoxType.BlockNode("props"))).toBeInstanceOf(
+  expect(LayoutBox.create(new BoxType.BlockNode(["props"]))).toBeInstanceOf(
     LayoutBox
   );
 });
