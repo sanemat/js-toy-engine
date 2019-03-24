@@ -1,5 +1,5 @@
-const sum = require('../lib/layout');
+const { Rect } = require('../lib/layout');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+test('rect', () => {
+  expect(new Rect(1, 2, 3, 4).height).toBe(4);
 });
