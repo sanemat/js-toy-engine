@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/sanemat/js-toy-engine#readme",
   "dependencies": {
+    "math-clamp": "^1.0.0",
     "pngjs": "^3.4.0"
   },
   "devDependencies": {
