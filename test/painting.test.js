@@ -130,3 +130,18 @@ test("canvas pixels length", () => {
   const canvas = Canvas.create(2, 3);
   expect(canvas.pixels.length).toEqual(6);
 });
+
+test("canvas paint item", () => {
+  const canvas = Canvas.create(2, 3);
+  canvas.paintItem(
+    new DisplayCommand.SolidColor([new Color(0, 0, 0, 0), new Rect(0, 0, 0, 0)])
+  );
+  expect(canvas.pixels).toEqual([
+    new Color(0, 0, 0, 0),
+    new Color(255, 255, 255, 255),
+    new Color(255, 255, 255, 255),
+    new Color(255, 255, 255, 255),
+    new Color(255, 255, 255, 255),
+    new Color(255, 255, 255, 255)
+  ]);
+});
