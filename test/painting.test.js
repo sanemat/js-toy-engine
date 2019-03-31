@@ -1,7 +1,8 @@
 const {
   DisplayCommand,
   getColor,
-  renderBackground
+  renderBackground,
+  Canvas
 } = require("../lib/painting");
 const { Color, Value } = require("../lib/css");
 const {
@@ -123,4 +124,9 @@ test("render background no color", () => {
     )
   );
   expect(displayList.length).toBe(0);
+});
+
+test("canvas pixels length", () => {
+  const canvas = Canvas.create(2, 3);
+  expect(canvas.pixels.length).toEqual(6);
 });
