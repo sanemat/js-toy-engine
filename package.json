@@ -8,7 +8,7 @@
     "example": "example"
   },
   "scripts": {
-    "prettier": "prettier --write \"{lib,test}/**/*.js\"",
+    "prettier": "prettier --write \"{lib,test,example}/**/*.js\"",
     "test": "jest"
   },
   "repository": {
